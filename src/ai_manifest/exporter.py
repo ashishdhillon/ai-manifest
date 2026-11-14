@@ -43,3 +43,9 @@ def format_markdown(manifest: SystemManifest) -> str:
 
 def format_json(manifest: SystemManifest) -> str:
     return json.dumps(manifest.to_dict(), indent=2)
+
+
+def format_cyclonedx(manifest: SystemManifest) -> str:
+    from .cyclonedx import format_cyclonedx_json
+    return format_cyclonedx_json(manifest)
+
