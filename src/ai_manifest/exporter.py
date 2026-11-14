@@ -49,3 +49,9 @@ def format_cyclonedx(manifest: SystemManifest) -> str:
     from .cyclonedx import format_cyclonedx_json
     return format_cyclonedx_json(manifest)
 
+
+def format_html(manifest: SystemManifest) -> str:
+    from .html_report import generate_html_system_card
+    return generate_html_system_card(manifest)
+
+
