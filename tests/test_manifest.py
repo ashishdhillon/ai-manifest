@@ -1,6 +1,10 @@
 import unittest
 import tempfile
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+
 from ai_manifest.scanner import ManifestScanner
 from ai_manifest.exporter import format_table, format_markdown, format_json
 from ai_manifest.models import ComponentType
