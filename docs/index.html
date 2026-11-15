@@ -3,43 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ai-manifest &bull; AI System Card & CycloneDX 1.6 AI-BOM Observatory</title>
+    <title>ai-manifest &bull; AI System Card &amp; CycloneDX 1.6 AI-BOM Observatory</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #09090b;
-            --bg-subtle: #121215;
-            --bg-elevated: #18181b;
-            --border-muted: #27272a;
-            --border-hover: #3f3f46;
-            --text-high: #fafafa;
-            --text-med: #a1a1aa;
-            --text-dim: #71717a;
-            --accent-purple: #a855f7;
-            --accent-purple-glow: rgba(168, 85, 247, 0.15);
-            --accent-cyan: #06b6d4;
-            --accent-emerald: #10b981;
-            --accent-amber: #f59e0b;
-            --accent-blue: #3b82f6;
+            --bg-canvas: #FAF4ED;
+            --bg-surface: #FFFFFF;
+            --bg-subtle: #F3EDE2;
+            --ink-primary: #141413;
+            --ink-secondary: #4A4842;
+            --ink-muted: #7A7870;
+            --border-strong: 2px solid #141413;
+            --shadow-tactile: 4px 4px 0px #141413;
+            --shadow-tactile-hover: 6px 6px 0px #141413;
+            --shadow-tactile-active: 2px 2px 0px #141413;
+
+            /* Orchid, Amber & Turquoise Palette */
+            --orchid-violet: #A855F7;
+            --orchid-violet-tint: #F3E8FF;
+            --sunny-amber: #F59E0B;
+            --sunny-amber-tint: #FEF3C7;
+            --turquoise-cyan: #06B6D4;
+            --turquoise-cyan-tint: #CFFAFE;
+            --lime-punch: #C6F453;
+            --lime-punch-tint: #F1FCD6;
+            --rose-pink: #F43F5E;
+            --rose-pink-tint: #FFE4E6;
+            --periwinkle-blue: #6E85FF;
+            --periwinkle-blue-tint: #E5EAFF;
+            --sunshine-yellow: #FFD166;
+
             --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+            --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, monospace;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background-color: var(--bg-base);
-            color: var(--text-high);
+            background-color: var(--bg-canvas);
+            color: var(--ink-primary);
             font-family: var(--font-sans);
             line-height: 1.5;
-            padding: 2.5rem 1.5rem;
+            padding: 1.5rem 1rem;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1140px;
+            max-width: 1260px;
             margin: 0 auto;
         }
 
@@ -48,559 +61,634 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1.75rem;
-            border-bottom: 1px solid var(--border-muted);
-            margin-bottom: 2.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-surface);
+            border: var(--border-strong);
+            border-radius: 20px;
+            box-shadow: var(--shadow-tactile);
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .brand-crumb {
+
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .brand-logo-badge {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-med);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--ink-primary);
+            text-decoration: none;
+            letter-spacing: -0.03em;
         }
-        .brand-crumb strong {
-            color: var(--text-high);
-            font-weight: 700;
-            letter-spacing: -0.02em;
+
+        .manifest-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--orchid-violet-tint);
+            border: var(--border-strong);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            box-shadow: 2px 2px 0px #141413;
         }
-        .live-status-pill {
+
+        .cyclonedx-pill {
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
-            background: rgba(168, 85, 247, 0.08);
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            padding: 0.25rem 0.65rem;
+            gap: 0.4rem;
+            background: var(--sunny-amber-tint);
+            border: var(--border-strong);
+            padding: 0.35rem 0.85rem;
             border-radius: 9999px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: #c084fc;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-        .pulse-dot-purple {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent-purple);
-            box-shadow: 0 0 8px var(--accent-purple);
-            animation: pulse-purple 2s infinite ease-in-out;
-        }
-        @keyframes pulse-purple {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #92400E;
+            box-shadow: 2px 2px 0px #141413;
+            letter-spacing: 0.02em;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
+            flex-wrap: wrap;
         }
-        .btn-nav {
+
+        .nav-pill-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.4rem 0.85rem;
-            border-radius: 6px;
-            font-size: 0.82rem;
-            font-weight: 600;
+            padding: 0.45rem 1rem;
+            border: var(--border-strong);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-decoration: none;
+            color: var(--ink-primary);
+            background: var(--bg-surface);
+            box-shadow: 2px 2px 0px #141413;
             transition: all 0.15s ease;
+            cursor: pointer;
         }
-        .btn-nav-outline {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-muted);
-            color: var(--text-med);
+        .nav-pill-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #141413;
         }
-        .btn-nav-outline:hover {
-            color: var(--text-high);
-            border-color: var(--border-hover);
-            background: var(--bg-elevated);
+        .nav-pill-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #141413;
         }
-        .btn-nav-glow {
-            background: #27272a;
-            border: 1px solid #3f3f46;
-            color: var(--text-high);
-        }
-        .btn-nav-glow:hover {
-            background: #3f3f46;
+        .nav-pill-btn.btn-active {
+            background: var(--orchid-violet);
+            color: #FFFFFF;
         }
 
-        /* Executive Telemetry Grid */
-        .executive-strip {
+        /* Main Workbench: Split Architecture Node Map & JSON Inspector */
+        .observatory-grid {
             display: grid;
-            grid-template-columns: 240px 1fr;
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-muted);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 2.5rem;
-        }
-        @media (max-width: 850px) {
-            .executive-strip { grid-template-columns: 1fr; }
-        }
-        .score-hero {
-            padding: 2.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(180deg, rgba(168, 85, 247, 0.08) 0%, rgba(9, 9, 11, 0.3) 100%);
-            border-right: 1px solid var(--border-muted);
-            text-align: center;
-        }
-        .score-circle {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-purple);
-            box-shadow: 0 0 24px var(--accent-purple-glow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.85rem;
-        }
-        .score-num {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-high);
-            line-height: 1;
-            letter-spacing: -0.04em;
-            font-family: var(--font-mono);
-        }
-        .score-sub-pct {
-            font-size: 0.68rem;
-            color: #c084fc;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-        }
-        .score-label {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-high);
-            letter-spacing: -0.01em;
-        }
-        .score-sub {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin-top: 0.2rem;
-        }
-
-        .metrics-quad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            padding: 1.75rem 2rem;
+            grid-template-columns: 1.15fr 0.85fr;
             gap: 1.5rem;
-            align-content: center;
+            margin-bottom: 1.5rem;
         }
-        @media (max-width: 600px) {
-            .metrics-quad { grid-template-columns: 1fr; }
-        }
-        .metric-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        .metric-tag {
-            font-size: 0.72rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-        }
-        .metric-num {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-high);
-            font-family: var(--font-mono);
-            letter-spacing: -0.03em;
-        }
-        .metric-context {
-            font-size: 0.75rem;
-            color: var(--text-med);
+        @media (max-width: 980px) {
+            .observatory-grid { grid-template-columns: 1fr; }
         }
 
-        /* Interactive Studio Workbench */
-        .workbench-wrapper {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-muted);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 2.5rem;
-        }
-        .workbench-header {
-            padding: 1rem 1.5rem;
-            background: #141417;
-            border-bottom: 1px solid var(--border-muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-        .workbench-title {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--text-high);
-            letter-spacing: -0.01em;
-        }
-        .workbench-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 420px;
-        }
-        @media (max-width: 850px) {
-            .workbench-body { grid-template-columns: 1fr; }
-        }
-
-        /* Left Studio: Component Tree */
-        .studio-input-col {
-            padding: 1.5rem;
-            border-right: 1px solid var(--border-muted);
+        /* Tactile Card Generic */
+        .tactile-card {
+            background: var(--bg-surface);
+            border: var(--border-strong);
+            border-radius: 20px;
+            box-shadow: var(--shadow-tactile);
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-        .filter-ribbon {
+
+        .card-header-bar {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--ink-primary);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Filter Pills */
+        .filter-pill-row {
+            display: flex;
+            align-items: center;
             gap: 0.4rem;
             flex-wrap: wrap;
         }
-        .filter-btn {
-            background: var(--bg-base);
-            border: 1px solid var(--border-muted);
-            color: var(--text-dim);
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-        .filter-btn.active {
-            background: #27272a;
-            color: var(--text-high);
-            border-color: #52525b;
-        }
 
-        .component-list-view {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            flex-grow: 1;
-            overflow-y: auto;
-            max-height: 320px;
-        }
-        .comp-card {
-            background: var(--bg-base);
-            border: 1px solid var(--border-muted);
-            border-radius: 8px;
-            padding: 0.75rem 0.95rem;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .comp-card:hover, .comp-card.selected {
-            border-color: #52525b;
-            background: #18181e;
-        }
-        .comp-name { font-size: 0.84rem; font-weight: 600; color: var(--text-high); }
-        .comp-lineage { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.15rem; }
-
-        /* Right Studio: CycloneDX JSON Tree */
-        .studio-telemetry-col {
-            padding: 1.5rem;
-            background: #0d0d10;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .telemetry-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .filter-chip {
+            padding: 0.35rem 0.8rem;
+            border: var(--border-strong);
+            border-radius: 9999px;
             font-size: 0.78rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 1px solid #1a1a20;
+            font-weight: 800;
+            background: var(--bg-surface);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #141413;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
-        .telemetry-label { color: var(--text-dim); }
-        .telemetry-val { font-family: var(--font-mono); color: var(--text-high); }
+        .filter-chip:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #141413;
+        }
+        .filter-chip.active {
+            box-shadow: 3px 3px 0px #141413;
+            transform: translate(-1px, -1px);
+        }
+        .filter-chip.chip-all.active { background: var(--periwinkle-blue); color: #FFFFFF; }
+        .filter-chip.chip-models.active { background: var(--sunny-amber); color: #141413; }
+        .filter-chip.chip-vectors.active { background: var(--turquoise-cyan); color: #141413; }
+        .filter-chip.chip-guards.active { background: var(--rose-pink); color: #FFFFFF; }
+        .filter-chip.chip-agents.active { background: var(--lime-punch); color: #141413; }
 
-        .json-code-box {
-            background: #08080a;
-            border: 1px solid #1c1c22;
-            border-radius: 8px;
-            padding: 0.85rem;
+        /* Interactive Architecture Visual Canvas */
+        .arch-canvas-wrap {
+            border: var(--border-strong);
+            border-radius: 16px;
+            background: #FFFDF7;
+            padding: 1.25rem;
+            position: relative;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Node layout rows */
+        .arch-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .node-card {
+            background: #FFFFFF;
+            border: var(--border-strong);
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            box-shadow: 3px 3px 0px #141413;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-width: 175px;
+            flex: 1;
+            max-width: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .node-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #141413;
+        }
+        .node-card.selected {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #141413;
+            background: var(--sunny-amber-tint);
+        }
+
+        .node-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #141413;
+            width: fit-content;
+        }
+        .node-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--ink-primary);
+        }
+        .node-meta {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--ink-secondary);
+        }
+
+        /* SVG Lineage Flow Connector Overlay */
+        .flow-svg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* JSON Inspector Panel (Right) */
+        .inspector-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .file-lineage-badge {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: #93c5fd;
-            line-height: 1.55;
-            flex-grow: 1;
-            overflow-y: auto;
-            max-height: 310px;
-            white-space: pre;
+            font-weight: 700;
+            background: var(--bg-subtle);
+            border: 1.5px solid #141413;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+        }
+        .purl-pill {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            background: var(--orchid-violet-tint);
+            border: 1.5px solid var(--orchid-violet);
+            color: #6B21A8;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
-        /* Ledger Table */
-        .ledger-card {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-muted);
+        .btn-copy-json {
+            padding: 0.55rem 1rem;
+            border: var(--border-strong);
             border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 2.5rem;
-        }
-        .ledger-header {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border-muted);
-            display: flex;
-            justify-content: space-between;
+            background: var(--sunshine-yellow);
+            color: var(--ink-primary);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 800;
+            box-shadow: 2px 2px 0px #141413;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
             align-items: center;
+            gap: 0.4rem;
         }
-        table {
+        .btn-copy-json:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #141413;
+        }
+        .btn-copy-json:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #141413;
+        }
+
+        .json-code-box {
+            background: #FFFDF7;
+            border: var(--border-strong);
+            border-radius: 14px;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: var(--ink-primary);
+            min-height: 320px;
+            max-height: 380px;
+            overflow: auto;
+            white-space: pre-wrap;
+            box-shadow: inset 1px 1px 0px rgba(0,0,0,0.05);
+        }
+
+        /* AI-BOM Dependency Ledger Table */
+        .ledger-section {
+            background: var(--bg-surface);
+            border: var(--border-strong);
+            border-radius: 20px;
+            box-shadow: var(--shadow-tactile);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .ledger-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
+            margin-top: 1rem;
         }
-        th {
-            background: #141418;
-            color: var(--text-dim);
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 0.85rem 1.25rem;
+        .ledger-table th {
             text-align: left;
-            border-bottom: 1px solid var(--border-muted);
+            padding: 0.75rem;
+            border-bottom: 2px solid #141413;
+            font-weight: 800;
+            color: var(--ink-primary);
+            background: var(--bg-subtle);
         }
-        td {
-            padding: 0.9rem 1.25rem;
-            border-bottom: 1px solid #18181e;
+        .ledger-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(20, 20, 19, 0.1);
+            cursor: pointer;
         }
-        tr:last-child td { border-bottom: none; }
-        .type-pill {
-            font-size: 0.7rem;
+        .ledger-table tr:hover td {
+            background: var(--sunny-amber-tint);
+        }
+        .ledger-table tr.selected td {
+            background: var(--sunny-amber-tint);
             font-weight: 700;
-            padding: 0.15rem 0.45rem;
-            border-radius: 4px;
         }
-        .type-model { background: rgba(168, 85, 247, 0.12); color: #c084fc; }
-        .type-vector { background: rgba(6, 182, 212, 0.12); color: #22d3ee; }
-        .type-guard { background: rgba(16, 185, 129, 0.12); color: #34d399; }
-        .type-frame { background: rgba(245, 158, 11, 0.12); color: #fbbf24; }
 
+        .pill-type {
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.15rem 0.55rem;
+            border-radius: 9999px;
+            border: 1px solid #141413;
+            box-shadow: 1px 1px 0px #141413;
+        }
+        .pill-type.type-model { background: var(--sunny-amber-tint); color: #92400E; }
+        .pill-type.type-vector { background: var(--turquoise-cyan-tint); color: #0E7490; }
+        .pill-type.type-guard { background: var(--rose-pink-tint); color: #9F1239; }
+        .pill-type.type-agent { background: var(--lime-punch-tint); color: #3F6212; }
+
+        .pill-risk {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #141413;
+        }
+        .pill-risk.risk-low { background: var(--lime-punch-tint); color: #3F6212; }
+        .pill-risk.risk-med { background: var(--sunny-amber-tint); color: #92400E; }
+
+        /* Toast notification */
+        .toast-bubble {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--lime-punch);
+            color: #141413;
+            border: var(--border-strong);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 800;
+            box-shadow: var(--shadow-tactile);
+            display: none;
+            z-index: 100;
+            animation: toast-in 0.2s ease-out;
+        }
+        @keyframes toast-in {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-muted);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink-secondary);
+            padding: 1.5rem 0;
         }
-        .footer a { color: var(--text-med); text-decoration: none; }
-        .footer a:hover { color: var(--text-high); }
-        code { font-family: var(--font-mono); font-size: 0.82em; }
+        .footer a {
+            color: var(--ink-primary);
+            text-decoration: underline;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Top Navigation Bar -->
         <nav class="nav-bar">
-            <div class="brand-crumb">
-                <span>ashishdhillon</span>
-                <span>/</span>
-                <strong>ai-manifest</strong>
-                <span class="live-status-pill">
-                    <span class="pulse-dot-purple"></span>
-                    CycloneDX 1.6 Certified
+            <div class="brand-cluster">
+                <a href="https://github.com/ashishdhillon/ai-manifest" class="brand-logo-badge" target="_blank">
+                    <div class="manifest-icon">📋</div>
+                    <span>ai-manifest</span>
+                </a>
+                <span class="cyclonedx-pill">
+                    CYCLONEDX 1.6 CERTIFIED &bull; EU AI ACT ART. 53 ✨
                 </span>
             </div>
             <div class="nav-actions">
-                <a href="https://github.com/ashishdhillon/ai-manifest" class="btn-nav btn-nav-outline" target="_blank">
-                    <svg height="15" width="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-                    Source Code
+                <button class="nav-pill-btn btn-active">
+                    📥 Import SBOM
+                </button>
+                <button class="nav-pill-btn" onclick="copyJSON()">
+                    📤 Export
+                </button>
+                <a href="https://github.com/ashishdhillon/ai-manifest#readme" class="nav-pill-btn" target="_blank">
+                    📖 Docs
                 </a>
-                <a href="https://github.com/ashishdhillon/ai-manifest/releases/tag/v0.2.0" class="btn-nav btn-nav-glow" target="_blank">
+                <a href="https://github.com/ashishdhillon/ai-manifest/releases/tag/v0.2.0" class="nav-pill-btn" target="_blank">
                     v0.2.0 Release
                 </a>
             </div>
         </nav>
 
-        <!-- Executive Telemetry Strip -->
-        <header class="executive-strip">
-            <div class="score-hero">
-                <div class="score-circle">
-                    <span class="score-num">7</span>
-                    <span class="score-sub-pct">COMPONENTS</span>
-                </div>
-                <div class="score-label">AI Architecture BOM</div>
-                <div class="score-sub">EU AI Act Art. 53 Aligned</div>
-            </div>
-            <div class="metrics-quad">
-                <div class="metric-item">
-                    <span class="metric-tag">BOM Specification</span>
-                    <span class="metric-num" style="color:#c084fc;">CycloneDX 1.6</span>
-                    <span class="metric-context">Standard Machine Learning Schema</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-tag">Models & Runtimes</span>
-                    <span class="metric-num" style="color:#c084fc;">2</span>
-                    <span class="metric-context">Claude 3.5 Sonnet + vLLM</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-tag">Vector Stores</span>
-                    <span class="metric-num" style="color:#22d3ee;">2</span>
-                    <span class="metric-context">ChromaDB + LanceDB</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-tag">Guardrails & Defense</span>
-                    <span class="metric-num" style="color:#34d399;">2</span>
-                    <span class="metric-context">guardkit + dpdp-rag-audit</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-tag">Agent Frameworks</span>
-                    <span class="metric-num" style="color:#fbbf24;">1</span>
-                    <span class="metric-context">LangGraph StateGraph</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-tag">Discovery Engine</span>
-                    <span class="metric-num" style="color:#34d399;">Dual-Source</span>
-                    <span class="metric-context">Package Manifests + AST Signatures</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Interactive Studio Workbench -->
-        <section class="workbench-wrapper">
-            <div class="workbench-header">
-                <div class="workbench-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                    Live Component Tree & CycloneDX 1.6 AI-BOM Inspector
-                </div>
-                <div style="font-size: 0.78rem; color: var(--text-dim); font-family: var(--font-mono);">
-                    FORMAT: <code>--format cyclonedx</code>
-                </div>
-            </div>
-
-            <div class="workbench-body">
-                <!-- Left: Filterable Tree -->
-                <div class="studio-input-col">
-                    <div class="filter-ribbon">
-                        <button class="filter-btn active" onclick="applyFilter('all', this)">All (7)</button>
-                        <button class="filter-btn" onclick="applyFilter('model', this)">Models (2)</button>
-                        <button class="filter-btn" onclick="applyFilter('vector_db', this)">Vector DBs (2)</button>
-                        <button class="filter-btn" onclick="applyFilter('guardrail', this)">Guardrails (2)</button>
-                        <button class="filter-btn" onclick="applyFilter('framework', this)">Agents (1)</button>
-                    </div>
-
-                    <div class="component-list-view" id="compListView">
-                        <!-- Populated by JS -->
+        <!-- Main Observatory Workbench: Split Node Map & JSON Inspector -->
+        <div class="observatory-grid">
+            <!-- Left: Interactive Architecture Node Map -->
+            <section class="tactile-card">
+                <div class="card-header-bar">
+                    <h2 class="card-title">
+                        <span>🗺️</span> Architecture &amp; AI-BOM Map
+                    </h2>
+                    <div class="filter-pill-row">
+                        <button class="filter-chip chip-all active" onclick="applyFilter('all', this)">All (7)</button>
+                        <button class="filter-chip chip-models" onclick="applyFilter('model', this)">Models (2)</button>
+                        <button class="filter-chip chip-vectors" onclick="applyFilter('vector_db', this)">Vector DBs (2)</button>
+                        <button class="filter-chip chip-guards" onclick="applyFilter('guardrail', this)">Guardrails (2)</button>
+                        <button class="filter-chip chip-agents" onclick="applyFilter('framework', this)">Agents (1)</button>
                     </div>
                 </div>
 
-                <!-- Right: Telemetry & CycloneDX 1.6 Tree -->
-                <div class="studio-telemetry-col">
-                    <div class="telemetry-row">
-                        <span class="telemetry-label">Selected Component PURL</span>
-                        <span class="telemetry-val" id="purlVal" style="font-size:0.75rem; color:#60a5fa;">pkg:generic/anthropic-claude-model@claude-3-5-sonnet</span>
-                    </div>
-                    <div class="telemetry-row">
-                        <span class="telemetry-label">CycloneDX 1.6 Type</span>
-                        <span class="telemetry-val" id="cdxTypeVal" style="color:#c084fc;">machine-learning-model</span>
-                    </div>
-                    <div class="telemetry-row">
-                        <span class="telemetry-label">Lineage File</span>
-                        <span class="telemetry-val" id="fileVal" style="font-size:0.75rem;">src/agent/llm.py</span>
+                <div class="arch-canvas-wrap">
+                    <!-- Subtle SVG connector lines indicating flow -->
+                    <svg class="flow-svg-overlay" preserveAspectRatio="none">
+                        <line x1="25%" y1="18%" x2="50%" y2="52%" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="75%" y1="18%" x2="50%" y2="52%" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="25%" y1="82%" x2="50%" y2="52%" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="75%" y1="82%" x2="50%" y2="52%" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4"/>
+                    </svg>
+
+                    <!-- Row 1: AI Models -->
+                    <div class="arch-row" id="rowModels">
+                        <div class="node-card selected" id="node_0" onclick="selectComp(0)">
+                            <span class="node-badge" style="background:var(--orchid-violet-tint); color:#7C3AED;">Model</span>
+                            <div class="node-name">Claude 3.5 Sonnet</div>
+                            <div class="node-meta">Metadata: Anthropic API</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active</div>
+                        </div>
+                        <div class="node-card" id="node_1" onclick="selectComp(1)">
+                            <span class="node-badge" style="background:var(--sunny-amber-tint); color:#B45309;">Model / Inference</span>
+                            <div class="node-name">vLLM Engine</div>
+                            <div class="node-meta">Metadata: Local Host</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active</div>
+                        </div>
                     </div>
 
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; font-weight:700;">Serialized CycloneDX Block:</span>
-                        <button type="button" class="btn-nav btn-nav-outline" style="padding:0.2rem 0.5rem; font-size:0.72rem;" onclick="copyJSON()">Copy Block</button>
+                    <!-- Row 2: Central Orchestrator Agent -->
+                    <div class="arch-row" id="rowAgent">
+                        <div class="node-card" id="node_6" onclick="selectComp(6)" style="max-width:300px;">
+                            <span class="node-badge" style="background:var(--lime-punch-tint); color:#3F6212;">Agent Framework</span>
+                            <div class="node-name">LangGraph StateGraph</div>
+                            <div class="node-meta">Orchestrator: Multi-Agent Workflow</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active &bull; Root Graph</div>
+                        </div>
                     </div>
-                    <div class="json-code-box" id="jsonBox">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Ledger Table -->
-        <section class="ledger-card">
-            <div class="ledger-header">
-                <div>
-                    <h2 style="font-size: 1rem; font-weight: 700;">AI Software Bill of Materials (AI-BOM) Ledger</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.15rem;">Automated inventory of all models, stores, guardrails, and agent frameworks.</p>
+                    <!-- Row 3: Vector DBs & Guardrails -->
+                    <div class="arch-row" id="rowStores">
+                        <div class="node-card" id="node_2" onclick="selectComp(2)">
+                            <span class="node-badge" style="background:var(--turquoise-cyan-tint); color:#0E7490;">Vector DB</span>
+                            <div class="node-name">ChromaDB</div>
+                            <div class="node-meta">Storage: Local SQLite</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active</div>
+                        </div>
+                        <div class="node-card" id="node_3" onclick="selectComp(3)">
+                            <span class="node-badge" style="background:var(--turquoise-cyan-tint); color:#0E7490;">Vector DB</span>
+                            <div class="node-name">LanceDB</div>
+                            <div class="node-meta">Storage: Vector Indices</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active</div>
+                        </div>
+                        <div class="node-card" id="node_4" onclick="selectComp(4)">
+                            <span class="node-badge" style="background:var(--rose-pink-tint); color:#BE123C;">Guardrail</span>
+                            <div class="node-name">guardkit</div>
+                            <div class="node-meta">Defense: Offline Guard</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active</div>
+                        </div>
+                        <div class="node-card" id="node_5" onclick="selectComp(5)">
+                            <span class="node-badge" style="background:var(--rose-pink-tint); color:#BE123C;">Guardrail</span>
+                            <div class="node-name">dpdp-rag-audit</div>
+                            <div class="node-meta">Defense: DPDP Compliance</div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#047857;">Status: Active</div>
+                        </div>
+                    </div>
                 </div>
-                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #c084fc;">
-                    7 DISCOVERED DEPENDENCIES
+            </section>
+
+            <!-- Right: CycloneDX 1.6 JSON Inspector -->
+            <section class="tactile-card">
+                <div class="card-header-bar">
+                    <h2 class="card-title">
+                        <span>🔍</span> CycloneDX 1.6 JSON Inspector
+                    </h2>
+                    <button class="btn-copy-json" onclick="copyJSON()">
+                        <span>📋</span> Copy CycloneDX Block
+                    </button>
                 </div>
-            </div>
-            <table>
+
+                <div class="inspector-meta-bar">
+                    <span class="file-lineage-badge" id="fileVal">src/agent/llm.py</span>
+                    <span class="purl-pill" id="purlVal">pkg:generic/anthropic-claude-model@claude-3-5-sonnet</span>
+                </div>
+
+                <div class="json-code-box" id="jsonBox">
+                    <!-- JSON block inserted dynamically -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom: AI-BOM Dependency Ledger -->
+        <section class="ledger-section">
+            <h3 class="card-title">
+                <span>📑</span> AI-BOM Dependency Ledger
+            </h3>
+            <table class="ledger-table">
                 <thead>
                     <tr>
-                        <th>Component Name</th>
-                        <th>Architecture Type</th>
-                        <th>Version Specifier</th>
-                        <th>Signature Evidence</th>
-                        <th>File Lineage</th>
+                        <th>Component</th>
+                        <th>Type</th>
+                        <th>Version</th>
+                        <th>Source Lineage</th>
+                        <th>License</th>
+                        <th>AI Risk Level</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr><td><strong>Anthropic Claude Model</strong></td><td><span class="type-pill type-model">MODEL</span></td><td><code>claude-3-5-sonnet</code></td><td><code>claude-3-5-sonnet</code></td><td style="color:var(--text-med);">src/agent/llm.py</td></tr>
-                    <tr><td><strong>vLLM Inference Engine</strong></td><td><span class="type-pill type-model">MODEL</span></td><td><code>&gt;=0.4.0</code></td><td><code>requirements.txt</code></td><td style="color:var(--text-med);">requirements.txt</td></tr>
-                    <tr><td><strong>ChromaDB</strong></td><td><span class="type-pill type-vector">VECTOR_DB</span></td><td><code>&gt;=0.4.22</code></td><td><code>chromadb.Client</code></td><td style="color:var(--text-med);">src/retrieval/db.py</td></tr>
-                    <tr><td><strong>LanceDB</strong></td><td><span class="type-pill type-vector">VECTOR_DB</span></td><td><code>==0.5.0</code></td><td><code>connect_lancedb</code></td><td style="color:var(--text-med);">src/retrieval/fast.py</td></tr>
-                    <tr><td><strong>guardkit</strong></td><td><span class="type-pill type-guard">GUARDRAIL</span></td><td><code>latest</code></td><td><code>import guardkit</code></td><td style="color:var(--text-med);">src/security/guard.py</td></tr>
-                    <tr><td><strong>dpdp-rag-audit</strong></td><td><span class="type-pill type-guard">GUARDRAIL</span></td><td><code>v0.2.0</code></td><td><code>DPDPScanner</code></td><td style="color:var(--text-med);">src/security/dpdp.py</td></tr>
-                    <tr><td><strong>LangGraph</strong></td><td><span class="type-pill type-frame">FRAMEWORK</span></td><td><code>&gt;=0.1.0</code></td><td><code>StateGraph</code></td><td style="color:var(--text-med);">src/agent/graph.py</td></tr>
+                <tbody id="ledgerBody">
+                    <!-- Rows dynamically inserted -->
                 </tbody>
             </table>
         </section>
 
+        <!-- Toast Feedback -->
+        <div class="toast-bubble" id="toastBubble">
+            ✅ CycloneDX JSON Block Copied to Clipboard!
+        </div>
+
+        <!-- Footer -->
         <footer class="footer">
-            <p>Built with pure Python standard library &bull; <a href="https://github.com/ashishdhillon/ai-manifest">github.com/ashishdhillon/ai-manifest</a> &bull; MIT License</p>
+            <p>Designed in Joyful Tactile Light-Mode &bull; Built with pure Python standard library &bull; <a href="https://github.com/ashishdhillon/ai-manifest" target="_blank">github.com/ashishdhillon/ai-manifest</a> &bull; MIT License</p>
         </footer>
     </div>
 
     <script>
         const COMPONENTS = [
             {
-                name: "Anthropic Claude Model",
+                name: "Claude 3.5 Sonnet",
                 type: "model",
                 badgeClass: "type-model",
-                version: "claude-3-5-sonnet",
+                version: "2024-10-22",
                 file: "src/agent/llm.py",
                 cdxType: "machine-learning-model",
                 purl: "pkg:generic/anthropic-claude-model@claude-3-5-sonnet",
+                license: "Proprietary / API",
+                risk: "Low Risk",
+                riskClass: "risk-low",
                 cdxBlock: {
                     "type": "machine-learning-model",
                     "name": "Anthropic Claude Model",
-                    "version": "claude-3-5-sonnet",
-                    "purl": "pkg:generic/anthropic-claude-model@claude-3-5-sonnet",
-                    "modelCard": {
-                        "modelParameters": { "task": "Generative Language & Reasoning", "architectureFamily": "Claude 3.5" },
-                        "properties": [{ "name": "ai:safety:auditReadiness", "value": "governance-verified" }]
-                    }
+                    "version": "claude-3-5-sonnet-20241022",
+                    "purl": "pkg:generic/anthropic-claude-model@claude-3-5-sonnet-20241022",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/agent/llm.py" },
+                        { "name": "ai:model_family", "value": "Claude-3.5" },
+                        { "name": "ai:modality", "value": "multimodal" }
+                    ]
                 }
             },
             {
-                name: "vLLM Inference Engine",
+                name: "vLLM Engine",
                 type: "model",
                 badgeClass: "type-model",
                 version: ">=0.4.0",
-                file: "requirements.txt",
+                file: "src/inference/engine.py",
                 cdxType: "machine-learning-model",
                 purl: "pkg:generic/vllm-inference-engine@>=0.4.0",
+                license: "Apache-2.0",
+                risk: "Medium Risk",
+                riskClass: "risk-med",
                 cdxBlock: {
                     "type": "machine-learning-model",
                     "name": "vLLM Inference Engine",
                     "version": ">=0.4.0",
-                    "purl": "pkg:generic/vllm-inference-engine@>=0.4.0"
+                    "purl": "pkg:generic/vllm-inference-engine@>=0.4.0",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/inference/engine.py" },
+                        { "name": "ai:quantization", "value": "FP8 / AWQ" }
+                    ]
                 }
             },
             {
@@ -611,11 +699,18 @@
                 file: "src/retrieval/db.py",
                 cdxType: "data",
                 purl: "pkg:generic/chromadb@>=0.4.22",
+                license: "Apache-2.0",
+                risk: "Medium Risk",
+                riskClass: "risk-med",
                 cdxBlock: {
                     "type": "data",
                     "name": "ChromaDB",
                     "version": ">=0.4.22",
-                    "purl": "pkg:generic/chromadb@>=0.4.22"
+                    "purl": "pkg:generic/chromadb@>=0.4.22",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/retrieval/db.py" },
+                        { "name": "ai:store_type", "value": "sqlite_hnsw" }
+                    ]
                 }
             },
             {
@@ -626,11 +721,18 @@
                 file: "src/retrieval/fast.py",
                 cdxType: "data",
                 purl: "pkg:generic/lancedb@==0.5.0",
+                license: "Apache-2.0",
+                risk: "Medium Risk",
+                riskClass: "risk-med",
                 cdxBlock: {
                     "type": "data",
                     "name": "LanceDB",
                     "version": "==0.5.0",
-                    "purl": "pkg:generic/lancedb@==0.5.0"
+                    "purl": "pkg:generic/lancedb@==0.5.0",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/retrieval/fast.py" },
+                        { "name": "ai:format", "value": "lance_columnar" }
+                    ]
                 }
             },
             {
@@ -641,11 +743,18 @@
                 file: "src/security/guard.py",
                 cdxType: "library",
                 purl: "pkg:generic/guardkit@latest",
+                license: "MIT",
+                risk: "Low Risk",
+                riskClass: "risk-low",
                 cdxBlock: {
                     "type": "library",
                     "name": "guardkit",
                     "version": "latest",
-                    "purl": "pkg:generic/guardkit@latest"
+                    "purl": "pkg:generic/guardkit@latest",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/security/guard.py" },
+                        { "name": "ai:safety_filter", "value": "deterministic_pii_injection" }
+                    ]
                 }
             },
             {
@@ -656,76 +765,125 @@
                 file: "src/security/dpdp.py",
                 cdxType: "library",
                 purl: "pkg:generic/dpdp-rag-audit@v0.2.0",
+                license: "MIT",
+                risk: "Low Risk",
+                riskClass: "risk-low",
                 cdxBlock: {
                     "type": "library",
                     "name": "dpdp-rag-audit",
                     "version": "v0.2.0",
-                    "purl": "pkg:generic/dpdp-rag-audit@v0.2.0"
+                    "purl": "pkg:generic/dpdp-rag-audit@v0.2.0",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/security/dpdp.py" },
+                        { "name": "compliance:statute", "value": "India DPDP Act 2023" }
+                    ]
                 }
             },
             {
                 name: "LangGraph",
                 type: "framework",
-                badgeClass: "type-frame",
+                badgeClass: "type-agent",
                 version: ">=0.1.0",
                 file: "src/agent/graph.py",
                 cdxType: "framework",
                 purl: "pkg:generic/langgraph@>=0.1.0",
+                license: "MIT",
+                risk: "Low Risk",
+                riskClass: "risk-low",
                 cdxBlock: {
                     "type": "framework",
                     "name": "LangGraph",
                     "version": ">=0.1.0",
-                    "purl": "pkg:generic/langgraph@>=0.1.0"
+                    "purl": "pkg:generic/langgraph@>=0.1.0",
+                    "properties": [
+                        { "name": "source_lineage", "value": "src/agent/graph.py" },
+                        { "name": "ai:orchestrator", "value": "state_machine_graph" }
+                    ]
                 }
             }
         ];
 
         let selectedIndex = 0;
+        let currentFilter = "all";
 
-        function renderList(filter = "all") {
-            const list = document.getElementById("compListView");
-            list.innerHTML = "";
+        function renderLedger() {
+            const tbody = document.getElementById("ledgerBody");
+            tbody.innerHTML = "";
 
             COMPONENTS.forEach((c, idx) => {
-                if (filter !== "all" && c.type !== filter) return;
+                if (currentFilter !== "all" && c.type !== currentFilter) return;
 
-                const card = document.createElement("div");
-                card.className = "comp-card" + (idx === selectedIndex ? " selected" : "");
-                card.onclick = () => selectComp(idx);
-                card.innerHTML = `
-                    <div>
-                        <div class="comp-name">${c.name}</div>
-                        <div class="comp-lineage">${c.file}</div>
-                    </div>
-                    <span class="type-pill ${c.badgeClass}">${c.type.toUpperCase()}</span>
+                const tr = document.createElement("tr");
+                if (idx === selectedIndex) tr.className = "selected";
+                tr.onclick = () => selectComp(idx);
+
+                tr.innerHTML = `
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="pill-type ${c.badgeClass}">${c.type.toUpperCase()}</span></td>
+                    <td><code style="font-family:var(--font-mono); font-size:0.8rem;">${c.version}</code></td>
+                    <td><code style="font-family:var(--font-mono); font-size:0.75rem; color:var(--ink-secondary);">${c.file}</code></td>
+                    <td><span style="font-size:0.8rem; font-weight:700;">${c.license}</span></td>
+                    <td><span class="pill-risk ${c.riskClass}">${c.risk}</span></td>
                 `;
-                list.appendChild(card);
+                tbody.appendChild(tr);
             });
         }
 
         function selectComp(idx) {
             selectedIndex = idx;
             const c = COMPONENTS[idx];
+
             document.getElementById("purlVal").innerText = c.purl;
-            document.getElementById("cdxTypeVal").innerText = c.cdxType;
             document.getElementById("fileVal").innerText = c.file;
             document.getElementById("jsonBox").innerText = JSON.stringify(c.cdxBlock, null, 2);
-            renderList(currentFilter);
+
+            // Update node cards
+            for (let i = 0; i < COMPONENTS.length; i++) {
+                const el = document.getElementById("node_" + i);
+                if (el) {
+                    if (i === idx) {
+                        el.classList.add("selected");
+                    } else {
+                        el.classList.remove("selected");
+                    }
+                }
+            }
+
+            renderLedger();
         }
 
-        let currentFilter = "all";
         function applyFilter(filter, btn) {
             currentFilter = filter;
-            document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            renderList(filter);
+            document.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+
+            // Filter visibility of node cards
+            for (let i = 0; i < COMPONENTS.length; i++) {
+                const el = document.getElementById("node_" + i);
+                if (el) {
+                    if (filter === "all" || COMPONENTS[i].type === filter) {
+                        el.style.display = "flex";
+                    } else {
+                        el.style.display = "none";
+                    }
+                }
+            }
+
+            renderLedger();
         }
 
         function copyJSON() {
             const text = document.getElementById("jsonBox").innerText;
             navigator.clipboard.writeText(text);
+
+            const toast = document.getElementById("toastBubble");
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 2500);
         }
 
+        // Initialize on load
         selectComp(0);
     </script>
 </body>
